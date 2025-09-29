@@ -303,7 +303,7 @@ export default function Index() {
             onEdit={handleEditBill}
             onDuplicate={handleDuplicateBill}
             refresh={refreshKey}
-            initialFilter={billTypeFilter}
+            initialBillTypeFilter={billTypeFilter}
             onFilterChange={setBillTypeFilter}
           />
         )}
