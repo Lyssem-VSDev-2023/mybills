@@ -310,7 +310,7 @@ export const BillForm: React.FC<BillFormProps> = ({
           {/* Existing Files */}
           {existingFiles.length > 0 && (
             <div>
-              <Label>Fichiers existants</Label>
+              <Label>Mes Fichiers existants</Label>
               <div className="space-y-2 mt-2">
                 {existingFiles.map((file) => (
                   <div key={file.id} className="flex items-center justify-between p-2 border rounded">
