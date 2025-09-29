@@ -6,9 +6,8 @@ import { viteSourceLocator } from "@metagptx/vite-plugin-source-locator";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [
-    viteSourceLocator({
-      prefix: "mgx",
-    }),
+    // Only include source locator in development mode
+    ...(mode === "development" ? [viteSourceLocator({ prefix: "mgx" })] : []),
     react(),
   ],
   resolve: {
@@ -16,4 +15,18 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    outDir: "dist",
+    sourcemap: false,
+    minify: "terser",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          ui: ["@radix-ui/react-dialog", "@radix-ui/react-select", "@radix-ui/react-tabs"],
+        },
+      },
+    },
+  },
+  base: "/",
 }));
